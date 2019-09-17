@@ -1,21 +1,24 @@
-# vuejs-product-app
+# Simple CRUD (create, read, update, delete)
 
-> A Vue.js simple product app with firestore
+![ReactAppCRUD](result_crud.gif)
+### How to develop :
+  - Clone this repo `git clone https://github.com/rahmandikahaekal/ReactJS-CRUD.git`
+  - After cloned, you can run the folder react with 
+    - cd (into cloned folder)
+    - npm start / yarn start
+  - If not working or you have a troble, you can create a new file and copy those files to your new folder react
+    - create-react-app `your own react folder`
+    - copy the cloned file, to your new folder created
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+simple-crud/
+  package.json
+  README.md
+  node_modules/
+  public/
+  src/
+    App.css
+    App.js
+    index.css
+    index.js
+```
