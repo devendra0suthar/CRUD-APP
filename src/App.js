@@ -18,7 +18,7 @@ const App = () => {
     }
 
     return (
-        <>
+        
             <div className="container">
                 <form>
                     <input type="text" value={result} />
@@ -45,7 +45,7 @@ const App = () => {
                     <button className="highlight"onClick={calculate}  id="calculate" >=</button>
                 </div>
             </div>
-        </>
+        
     );
 }
 
