@@ -1,96 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState } from  "react";
 import './App.css';
 
-class App extends Component {
-  
-  constructor(props){
-    super(props);
-    this.state = {
-      title: 'React Simple CRUD Application',
-      act: 0,
-      index: '',
-      datas: []
+const App = () => {
+    const [result, setResult] = useState("");
+
+    const handleClick = (e) => {
+        setResult(result.concat(e.target.name));
     }
-  }
-
-  componentDidMount(){
-    this.refs.name.focus();
-  }
-
-  fSubmit = (e) =>{
-    e.preventDefault();
-    console.log('try');
-
-    let datas = this.state.datas;
-    let name = this.refs.name.value;
-    let address = this.refs.address.value;
-
-    if (this.state.act === 0) { //new
-      let data = {
-        name, address
-      }
-  
-      datas.push(data); 
-    } else {                    //update
-      let index = this.state.index;
-      datas[index].name = name;
-      datas[index].address = address;
+    const clear = () => {
+        setResult("");
+    }
+    const backspace = () => {
+        setResult(result.slice(0, -1)); // or -1
+    }
+    const calculate = () => {
+        setResult(eval(result).toString());
     }
 
-    this.setState({
-      datas: datas
-    });
-
-    this.refs.myForm.reset();
-    this.refs.name.focus();
-  }
-
-  fRemove = (i) => {
-    let datas  = this.state.datas;
-    datas.splice(i,1);
-    this.setState({
-      datas:datas
-    });
-
-    this.refs.myForm.reset();
-    this.refs.name.focus();
-  }
-  
-  fEdit = (i) => {
-    let data = this.state.datas[i];
-    this.refs.name.value = data.name;
-    this.refs.address.value = data.address;
-
-    this.setState({
-      act: 1,
-      index: i 
-    })
-
-    this.refs.name.focus();
-  }
-
-  render() {
-    let datas = this.state.datas;
     return (
-      <div className="App">
-        <h2>{this.state.title}</h2>
-        <form ref="myForm" className="myForm">
-          <input type="text" ref="name" placeholder="your name" className="formField" />
-          <input type="text" ref="address" placeholder="your address" className="formField" />
-          <button onClick={(e)=>this.fSubmit(e)} className="myButton">Submit</button>
-        </form>
-        <pre>
-          {datas.map((data, i) =>
-            <li key={i} className="myList">
-              {i+1}.{data.name}, {data.address}
-              <button onClick={()=>this.fRemove(i)} className="myListButton">Remove</button>
-              <button onClick={()=>this.fEdit(i)} className="myListButton">Edit</button>
-            </li>
-          )}
-        </pre>
-      </div>
+        <>
+            <div className="container">
+                <form>
+                    <input type="text" value={result} />
+                </form> 
+
+                <div className="keypad">
+                    <button className="highlight" onClick={clear} id="clear">Clear</button>
+                    <button className="highlight" onClick={backspace} id="backspace">C</button>
+                    <button className="highlight" name="/" onClick={handleClick}>&divide;</button>
+                    <button name="7" onClick={handleClick}>7</button>
+                    <button name="8" onClick={handleClick}>8</button>
+                    <button name="9" onClick={handleClick}>9</button>
+                    <button className="highlight" name="*" onClick={handleClick}>&times;</button>
+                    <button name="4" onClick={handleClick}>4</button>
+                    <button name="5" onClick={handleClick}>5</button>
+                    <button name="6" onClick={handleClick}>6</button>
+                    <button className="highlight" name="-" onClick={handleClick}>&ndash;</button>
+                    <button name="1" onClick={handleClick}>1</button>
+                    <button name="2" onClick={handleClick} >2</button>
+                    <button name="3" onClick={handleClick}>3</button>
+                    <button className="highlight" name="+" onClick={handleClick}>+</button>
+                    <button name="0" onClick={handleClick}>0</button>
+                    <button className="highlight" name="." onClick={handleClick}>.</button>
+                    <button className="highlight"onClick={calculate}  id="calculate" >=</button>
+                </div>
+            </div>
+        </>
     );
-  }
 }
 
 export default App;
